@@ -26,9 +26,11 @@ const UserSchema = new Schema({
     },
     gender:{
         type:String,
-        default:"not to say ......"
+        default:"Prefer not to say.."
     }
-})
+},{
+    timestamps:true,
+});
 
 const User = model('User',UserSchema)
 
