@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 import User from './models/user.js'
 import Product from './models/product.js'
+import Order from "./models/order.js";
 
 
 // POST /signup
@@ -162,7 +163,88 @@ app.put('/products/:_id', async(req,res)=>{
         message:"updated product successfully"
     })
 })
+app.post('/orders',async(req,res)=>{
 
+    const {user,product,quantity,shipping_address,delivery_charges}=req.body
+
+    const OrderProduct = new Order({
+        user,product,quantity,shipping_address,delivery_charges
+
+    })
+
+   try{
+    const savedOrderProduct = await OrderProduct.save()
+
+    res.json({
+        data:savedOrderProduct,
+        success:true,
+        message:"Congratulation  your order has been placed"
+    })
+   }catch(e)
+   {
+    res.json({
+        message:e.message
+    })
+   }
+
+
+
+})
+
+
+//GET //all order
+
+app.get('/orders',async(req,res)=>{
+
+    const  findAllOrders = await Order.find().populate('user product')
+
+    findAllOrders.forEach((order)=>{
+
+        order.user.password=undefined
+    })
+
+    res.json({
+        data:findAllOrders,
+        message:"successfully fetch all order"
+    })
+})
+
+// GET :order/user/:id
+
+app.get('/orders/user/:id',async(req,res)=>{
+
+    const {id}=req.params;
+
+     const orderUserId  = await  Order.find({user:id}).populate('user product')
+
+
+     // remove password from all the order 
+     orderUserId.forEach((order)=>{
+
+        order.user.password= undefined
+     })
+
+     res.json({
+        data:orderUserId,
+        message:"find product succesfully"
+     })
+})
+
+// PATHCH: order/status/:id
+
+app.patch('/orders/status/:id',async(req,res)=>{
+
+    const {id} = req.params;
+    
+    const {status}=req.body;
+
+  await Order.updateOne({_id:id},{$set:{status:status}})
+
+  res.json({
+    status:true,
+    message:"Order status update successfully///"
+  })
+})
 
 
 

@@ -12,7 +12,7 @@ const productSchema = new Schema({
         required: true
     },
     brand: {
-        type: String,
+        type: String,  
         default: "-"
     },
     category: {
@@ -20,11 +20,11 @@ const productSchema = new Schema({
         required: true
     },
     productImg: {
-        type: String,
+        type: String, 
 
     },
     description: {
-        type: String,
+        type: String,     
         default: "-"
     }
 
