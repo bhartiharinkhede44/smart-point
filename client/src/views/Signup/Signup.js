@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import "./Signup.css"
 function Signup() {
     const [name,setName] =useState("");
@@ -123,6 +124,9 @@ function Signup() {
       <label htmlFor='female' >Female</label>
 
 <button type='button' className='btn signupbtn' onClick={signup}>signup</button>
+<p className='heading-signup'>
+          <Link to="/login">already have an account</Link>
+        </p>
      </form>
 
     </div>

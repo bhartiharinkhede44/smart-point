@@ -48,30 +48,31 @@ app.get('/signup',async (req,res)=>{
 })
 
 // Login 
-// app.post('/login',async(req,res)=>{
+app.post('/login',async(req,res)=>{
 
-//     const{  email,password}=req.body;
+    const{  email,password}=req.body;
 
-//     const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
-
-
-//     if(loginUser){
-//         return res.json({
-//             success:true,
-//             data:loginUser,
-//             message:"login successfully"
-
-//         })
-//     }
-//    else{
-//     return res.json({
-//         success:false,
-//         data:loginUser,
+    const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
 
 
-//     })
+    if(loginUser){
+        return res.json({
+            success:true,
+            data:loginUser,
+            message:"login successfully"
 
-//    }
+        })
+    }
+   else{
+    return res.json({
+        success:false,
+        data:loginUser,
+
+
+    })
+
+   }
+})
    app.post('/products', async (req, res) => {
 
     const { name, price, category, brand, productImg, description } = req.body
