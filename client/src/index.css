@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.text-center{
+  text-align: center;
+}
+.input-box{
+  display: block;
+  font-size: 20px;
+  padding: 6px 10px;
+  width: 250px;
+  margin-bottom: 15px;
+}
+.btn{
+  border: none;
+  border-radius: 8px;
+  min-width: 120px;
+  padding: 8px;
+  background-color: rgb(21, 52, 21);
+  text-align: center;
+  color: aliceblue;
+}
