@@ -24,7 +24,9 @@
 
 
 }
-
+.price{
+   color: (85, 149, 84);
+}
 .status{
    position: absolute;
    right:10px;

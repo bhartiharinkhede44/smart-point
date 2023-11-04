@@ -88,9 +88,9 @@ const Orders = () => {
                   <div className='ps-5 pt-4'>
                     <Link  to={`/buy/${product._id}`} 
                     className='myorder-product-name'>{product.name}</Link><br/>
-                    <span className='fw-bold'> Qty:{quantity} </span> <span className='fw-bold ms-5 text-info'> Price: ₹ {product.price}/- </span>
+                    <span className='fw-bold'> Qty:{quantity} </span> <span className='fw-bold ms-5 price'> Price: ₹ {product.price}/- </span>
                     <p className='mt-2 totalamount'>
-                      <span className='text-danger fw-bold'>Amount =  ₹ {product.price * quantity}
+                      <span className='text-primary fw-bold'>Amount =  ₹ {product.price * quantity}
                       </span></p>
                     <p className='mt-2 fw-bold'>shipping address: {shipping_address}</p>
                     <p className={`status ${STATUS_BADGES[status]}`}> {status} </p>
