@@ -21,12 +21,12 @@ code {
   width: 250px;
   margin-bottom: 15px;
 }
-.btn{
+.btnn{
   border: none;
   border-radius: 8px;
   min-width: 120px;
   padding: 8px;
-  background-color: rgb(21, 52, 21);
+  background-color: rgb(35, 101, 35);
   text-align: center;
   color: aliceblue;
 }

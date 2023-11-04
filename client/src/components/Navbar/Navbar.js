@@ -1,42 +1,65 @@
-import React from 'react'
-import "./Navbar.css"
-import { useState,useEffect } from 'react'
-import {Link} from "react-router-dom"
-function Navbar() {
-  const [user,setUser] = useState({});
+import React, { useState, useEffect } from 'react'
+import './Navbar.css'
+import { Link } from 'react-router-dom'
 
-  useEffect(()=>{
-    const localuser = JSON.parse(localStorage.getItem('localuser') || "{}");
-    setUser(localuser);
-  })
-  
-  const logout  = ()=>{
-    localStorage.removeItem('localuser');
-    window.location.href= '/login';
-    alert('Logout Succesfully..!')
-  }
+const Navbar = () => {
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+
+    const userStore = JSON.parse(localStorage.getItem(('user') || '{}'))
+    setUser(userStore)
+
+  }, [])
+
+
+
   return (
-    <div>
-      <div className='nav-container'>
-       <p className='logo'>Smart Market</p>
-       <div className='link-container'>
-        <p className='link'><Link to ='/'>Home</Link></p> 
-        {
-          user?.name ? <p className='link'><Link to='/order'>My Orders</Link></p>:
-        
-         <span className="btnn-contaain">
-           <p className='link'><Link to='/signup'>Signup</Link></p>
-         <p className='link'><Link to='/login'>login</Link></p>
-         </span>
-        }
+    <div className='navbar-main-container p-2'>
+
+      <div className='logo-container'>
+        <p><Link to='/' className='logo'> 🛒 Smart_Point</Link> </p>
+      </div>
+
+      <div>
+        <div className='nav-link-container'>
+          {
+            user ? <Link to='/orders' className='nav-links'>MyOrders</Link>
+              : <>
+                <Link to='/login' className='nav-links'>Login</Link>
+                <Link to='/signup' className='nav-links'>Signup</Link>
+
+              </>
+          }
+
+
         </div>
-        <p className="username">👤{user?.name || "Hello User"}</p>
-           {
-            user?.name ?  <p className="logpout" onClick={logout}>Logout</p> : null
-           }
 
       </div>
+
+      <div>
+
+        <span className='text-light fs-5'>Hello 👋,{user?.name || 'user'}</span>
+
+
+        {
+          user?.name ? (
+            <span className='text-light fs-5 ms-3 curser-pointer' onClick={() => {
+              localStorage.removeItem('user')
+              window.location.href = '/login'
+            }}> Logout </span>
+
+          ) : null
+        }
+
+
+      </div>
+
+
+
     </div>
+
   )
 }
 

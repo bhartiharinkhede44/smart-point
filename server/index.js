@@ -99,6 +99,19 @@ app.post('/login',async(req,res)=>{
         )
     }
 })
+// get all products
+app.get('/products', async (req, res) => {
+
+    const products = await Product.find();
+
+    res.json({
+        success: true,
+        data: products,
+        message: "all fetched successfuly"
+
+    })
+})
+
 
 //get data by id 
 
