@@ -7,6 +7,11 @@ app.use(express.json());
 import User from './models/user.js'
 import Product from './models/product.js'
 import Order from "./models/order.js";
+import path from 'path';
+
+const __dirname = path.resolve();
+
+
 
 
 // POST /signup
@@ -261,7 +266,13 @@ app.patch('/orders/status/:id',async(req,res)=>{
 })
 
 
-
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    });
+  }
 
 
 
