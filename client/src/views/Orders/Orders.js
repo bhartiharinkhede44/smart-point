@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useId } from 'react'
 import './Orders.css'
 import {Link, useParams} from 'react-router-dom'
 import Navbar from './../../components/Navbar/Navbar'
@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Orders = () => {
 
-  const { _id }= useParams()
+  // const { _id }= useParams()
 
 
 
@@ -21,36 +21,46 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
 
+const loadUserFromlcl=()=>{
+  const storeUser = JSON.parse(localStorage.getItem('user' || '{}'))
 
+
+  if (storeUser) {
+
+    setUser(storeUser)
+    UserOrder(storeUser?._id)
+
+  } else {
+
+    alert('you are not logged in !...')
+    window.location.href = '/login'
+
+  }
+}
   useEffect(() => {
-    const storeUser = JSON.parse(localStorage.getItem('user' || '{}'))
-
-    if (storeUser?.name) {
-
-      setUser(storeUser)
-
-    } else {
-
-      alert('you are not logged in !...')
-      window.location.href = '/login'
-
-    }
+    loadUserFromlcl();
   }, [])
 
 
-  const UserOrder = async () => {
-    const storeUser = JSON.parse(localStorage.getItem('user' || '{}'))
-    const usetId = storeUser._id
-    const response = await axios.get(`/orders/user/${usetId}`)
-    setOrders(response?.data?.data)
+  const UserOrder = async (currentUserId) => {
+  
+    try{
+      const response = await axios.get(`/orders/user/${currentUserId}`)
+    if(response?.data?.data){
+     setOrders(response?.data?.data)
+     }
+    }catch(err){
+      console.log(err)
+    }
+ 
 
 
   }
 
-  useEffect(() => {
-    UserOrder()
+  // useEffect(() => {
 
-  }, [user])
+
+  // }, [user])
 
   const calculateTotalAmount = () => {
     let total = 0;

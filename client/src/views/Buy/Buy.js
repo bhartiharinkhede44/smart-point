@@ -115,7 +115,7 @@ const Buy = () => {
                             /><label className='ms-2'>SuperFast delivery charges</label> 
                         </div>
 
-
+                         
 
                     </div>
                     <button type="button"

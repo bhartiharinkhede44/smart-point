@@ -14,7 +14,7 @@ const loadUser = ()=>{
   loadUser();
  },[])
   return (
-
+        
     <div>
 
 
@@ -34,6 +34,7 @@ const loadUser = ()=>{
 
 
         >Buy now</Link>
+        
         : <Link className='button buy-now-btn '
 
         onClick={() => {

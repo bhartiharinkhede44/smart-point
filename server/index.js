@@ -204,11 +204,11 @@ app.post('/orders',async(req,res)=>{
     res.json({
         message:e.message
     })
-   }
+    }
 
 
 
-})
+ })
 
 
 //GET //all order
@@ -217,10 +217,10 @@ app.get('/orders',async(req,res)=>{
 
     const  findAllOrders = await Order.find().populate('user product')
 
-    findAllOrders.forEach((order)=>{
+    // findAllOrders.forEach((order)=>{
 
-        order.user.password=undefined
-    })
+    //     order.user.password=undefined
+    // })
 
     res.json({
         data:findAllOrders,
@@ -238,12 +238,15 @@ app.get('/orders/user/:id',async(req,res)=>{
 
 
      // remove password from all the order 
-     orderUserId.forEach((order)=>{
+    //  orderUserId.forEach((order)=>{
 
-        order.user.password= undefined
-     })
+    //    if(order){
+    //     order.user.password= undefined
+    //    }
+    //  })
 
      res.json({
+        success:true,
         data:orderUserId,
         message:"find product succesfully"
      })

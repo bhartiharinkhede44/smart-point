@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className='navbar-main-container p-2'>
 
       <div className='logo-container'>
-        <p><Link to='/' className='logo'> 🛒 Smart_Point</Link> </p>
+        <p><Link to='/' className='logo'> Smart_Point</Link> </p>
       </div>
 
       <div>
